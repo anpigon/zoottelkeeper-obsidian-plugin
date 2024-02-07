@@ -1,11 +1,23 @@
 {
-    "folder": "폴더",
-    "folders_included": "포함된 폴더들",
-    "folders_included_desc": "Zoottelkeeper에 의해 처리될 폴더들을 지정하세요. 루트 볼트에서 시작하는 절대 경로로, 한 줄에 하나씩 지정해야 합니다. 예: Notes/ <enter> Articles/, 루트 폴더 내 Notes와 Articles 폴더를 포함시킬 것입니다. 빈 리스트는 제외된 폴더를 제외하고 전체 볼트가 처리됨을 의미합니다. '*'는 폴더의 하위 디렉토리를 재귀적으로 포함시키기 위해 끝에 추가할 수 있습니다, 예: Notes/* <enter> Articles/",
-    "folders_excluded": "제외된 폴더들",
-    "folders_excluded_desc": "Zoottelkeeper에 의해 처리되지 않을 폴더들을 지정하세요. 루트 볼트에서 시작하는 절대 경로로, 한 줄에 하나씩 지정해야 하며, 루트 폴더 자체를 제외하는 빈 줄입니다. 예: \"Notes/ <enter> Articles/\", 루트 폴더 내 Notes와 Articles 폴더를 제외시킬 것입니다. *는 폴더의 하위 디렉토리를 재귀적으로 제외시키기 위해 끝에 추가할 수 있습니다.",
-    "trigger_indexing": "인덱싱 트리거",
-    "trigger_indexing_desc": "이 버튼을 누름으로써 현재 설정된 포함/제외 기준에 맞는 폴더에 대한 인덱싱을 트리거할 수 있습니다.",
-    "generate_index_now": "지금 인덱스 생성"
-  }
-  
+  "folder": "폴더",
+  "folders_included": "포함된 폴더들",
+  "folders_included_desc": "Zoottelkeeper에 의해 처리될 폴더들을 지정하세요. 루트 볼트에서 시작하는 절대 경로로, 한 줄에 하나씩 지정해야 합니다. 예: Notes/ <enter> Articles/, 루트 폴더 내 Notes와 Articles 폴더를 포함시킬 것입니다. 빈 리스트는 제외된 폴더를 제외하고 전체 볼트가 처리됨을 의미합니다. '*'는 폴더의 하위 디렉토리를 재귀적으로 포함시키기 위해 끝에 추가할 수 있습니다, 예: Notes/* <enter> Articles/",
+  "folders_excluded": "제외된 폴더들",
+  "folders_excluded_desc": "Zoottelkeeper에 의해 처리되지 않을 폴더들을 지정하세요. 루트 볼트에서 시작하는 절대 경로로, 한 줄에 하나씩 지정해야 하며, 루트 폴더 자체를 제외하는 빈 줄입니다. 예: \"Notes/ <enter> Articles/\", 루트 폴더 내 Notes와 Articles 폴더를 제외시킬 것입니다. *는 폴더의 하위 디렉토리를 재귀적으로 제외시키기 위해 끝에 추가할 수 있습니다.",
+  "trigger_indexing": "인덱싱 트리거",
+  "trigger_indexing_desc": "이 버튼을 누름으로써 현재 설정된 포함/제외 기준에 맞는 폴더에 대한 인덱싱을 트리거할 수 있습니다.",
+  "generate_index_now": "지금 인덱스 생성",
+  "general": "일반",
+  "clean_files": "파일 정리",
+  "clean_files_desc": "이 기능을 사용하면 미리보기 모드에서 경로와 '.md' 확장자 없이 파일만 표시할 수 있습니다.",
+  "index_links_order": "인덱스 링크 순서",
+  "index_links_order_desc": "인덱스 파일에서 링크가 정렬될 순서를 선택하세요.",
+  "ascending": "오름차순",
+  "descending": "내림차순",
+  "list_style": "목록 스타일",
+  "list_style_desc": "인덱스 목록의 스타일을 선택하세요.",
+  "pure_obsidian_link": "순수 옵시디언 링크",
+  "listed_link": "목록형 링크",
+  "checkboxed_link": "체크박스형 링크",
+  "chosen_index_item_style": "선택된 인덱스 항목 스타일: "
+}

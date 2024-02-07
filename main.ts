@@ -527,12 +527,10 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
         });
       });
 
-    containerEl.createEl("h3", { text: "General Settings" });
+    containerEl.createEl("h3", { text: i18next.t("general") });
     new Setting(containerEl)
-      .setName("Clean Files")
-      .setDesc(
-        "This enables you to only show the files without path and '.md' ending in preview mode."
-      )
+      .setName(i18next.t("clean_files"))
+      .setDesc(i18next.t("clean_files_desc"))
       .addToggle((t) => {
         t.setValue(this.plugin.settings.cleanPathBoolean);
         t.onChange(async (v) => {
@@ -541,11 +539,11 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
         });
       });
     new Setting(containerEl)
-      .setName("Index links Order")
-      .setDesc("Select the order of the links to be sorted in the index files.")
+      .setName(i18next.t("index_links_order"))
+      .setDesc(i18next.t("index_links_order_desc"))
       .addDropdown(async (dropdown) => {
-        dropdown.addOption(SortOrder.ASC, "Ascending");
-        dropdown.addOption(SortOrder.DESC, "Descending");
+        dropdown.addOption(SortOrder.ASC, i18next.t("ascending"));
+        dropdown.addOption(SortOrder.DESC, i18next.t("descending"));
 
         dropdown.setValue(this.plugin.settings.sortOrder);
         dropdown.onChange(async (option) => {
@@ -555,25 +553,29 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
       });
 
     new Setting(containerEl)
-      .setName("List Style")
-      .setDesc("Select the style of the index-list.")
+      .setName(i18next.t("list_style"))
+      .setDesc(i18next.t("list_style_desc"))
       .addDropdown(async (dropdown) => {
-        dropdown.addOption(IndexItemStyle.PureLink, "Pure Obsidian link");
-        dropdown.addOption(IndexItemStyle.List, "Listed link");
-        dropdown.addOption(IndexItemStyle.Checkbox, "Checkboxed link");
+        dropdown.addOption(
+          IndexItemStyle.PureLink,
+          i18next.t("pure_obsidian_link")
+        );
+        dropdown.addOption(IndexItemStyle.List, i18next.t("listed_link"));
+        dropdown.addOption(
+          IndexItemStyle.Checkbox,
+          i18next.t("checkboxed_link")
+        );
 
         dropdown.setValue(this.plugin.settings.indexItemStyle);
         dropdown.onChange(async (option) => {
-          console.debug("Chosen index item style: " + option);
+          console.debug(i18next.t("chosen_index_item_style") + option);
           this.plugin.settings.indexItemStyle = option as IndexItemStyle;
           await this.plugin.saveSettings();
         });
       });
     new Setting(containerEl)
-      .setName("Embed sub-index content in preview")
-      .setDesc(
-        "If you enable this, the plugin will embed the sub-index content in preview mode."
-      )
+      .setName(i18next.t("embed_sub_index_content_in_preview"))
+      .setDesc(i18next.t("embed_sub_index_content_in_preview_desc"))
       .addToggle((t) => {
         t.setValue(this.plugin.settings.embedSubIndex);
         t.onChange(async (v) => {

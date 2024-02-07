@@ -6,5 +6,20 @@
   "folders_excluded_desc": "Specify the folders NOT to be handled by Zoottelkeeper. They must be absolute paths starting from the root vault, one per line, an empty line excluding the root folder itself. Example:  \"Notes/ <enter>  Articles/ \", it will exclude Notes and Articles folder in the root folder. * can be added to the end, to exclude the folder's subdirectories recursively.",
   "trigger_indexing": "Trigger indexing",
   "trigger_indexing_desc": "By pushing this button you can trigger the indexing on folders match your include/exclude criterias currently set.",
-  "generate_index_now": "Generate index now"
+  "generate_index_now": "Generate index now",
+  "general": "General Settings",
+  "clean_files": "Clean Files",
+  "clean_files_desc": "This enables you to only show the files without path and '.md' ending in preview mode.",
+  "index_links_order": "Index links Order",
+  "index_links_order_desc": "Select the order of the links to be sorted in the index files.",
+  "ascending": "Ascending",
+  "descending": "Descending",
+  "list_style": "List Style",
+  "list_style_desc": "Select the style of the index-list.",
+  "pure_obsidian_link": "Pure Obsidian link",
+  "listed_link": "Listed link",
+  "checkboxed_link": "Checkboxed link",
+  "chosen_index_item_style": "Chosen index item style: ",
+  "embed_sub_index_content_in_preview": "Embed sub-index content in preview",
+  "embed_sub_index_content_in_preview_desc": "If you enable this, the plugin will embed the sub-index content in preview mode."
 }
