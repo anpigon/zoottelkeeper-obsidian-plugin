@@ -568,7 +568,6 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
 
         dropdown.setValue(this.plugin.settings.indexItemStyle);
         dropdown.onChange(async (option) => {
-          console.debug(i18next.t("chosen_index_item_style") + option);
           this.plugin.settings.indexItemStyle = option as IndexItemStyle;
           await this.plugin.saveSettings();
         });
@@ -586,10 +585,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
 
     // index prefix
     new Setting(containerEl)
-      .setName("Index Prefix")
-      .setDesc(
-        "Per default the file is named after your folder, but you can prefix it here."
-      )
+      .setName(i18next.t("index_prefix"))
+      .setDesc(i18next.t("index_prefix_desc"))
       .addText((text) =>
         text
           .setPlaceholder("")
@@ -601,10 +598,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Template file")
-      .setDesc(
-        'Set your template file\'s absolute path like "templates/zoottel_template.md"'
-      )
+      .setName(i18next.t("template_file"))
+      .setDesc(i18next.t("template_file_desc"))
       .addText((text) =>
         text
           .setPlaceholder("")
@@ -616,10 +611,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Frontmatter separator")
-      .setDesc(
-        "It specifies the separator string generated before and after the frontmatter, by default its ---"
-      )
+      .setName(i18next.t("frontmatter_separator"))
+      .setDesc(i18next.t("frontmatter_separator_desc"))
       .addText((text) =>
         text
           .setPlaceholder("")
@@ -629,14 +622,12 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           })
       );
-    containerEl.createEl("h4", { text: "Meta Tags" });
+    containerEl.createEl("h4", { text: i18next.t("meta_tags") });
 
     // Enabling Meta Tags
     new Setting(containerEl)
-      .setName("Enable Meta Tags")
-      .setDesc(
-        "You can add Meta Tags at the top of your index-file. This is useful when you're using the index files as MOCs."
-      )
+      .setName(i18next.t("enable_meta_tags"))
+      .setDesc(i18next.t("enable_meta_tags_desc"))
       .addToggle((t) => {
         t.setValue(this.plugin.settings.indexTagBoolean);
         t.onChange(async (v) => {
@@ -647,13 +638,11 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
 
     // setting the meta tag value
     const metaTagsSetting = new Setting(containerEl)
-      .setName("Set Meta Tags")
-      .setDesc(
-        'You can add one or multiple tags to your index-files! There is no need to use "#", just use the exact value of the tags\' separator specified below between the tags.'
-      )
+      .setName(i18next.t("set_meta_tags"))
+      .setDesc(i18next.t("set_meta_tags_desc"))
       .addText((text) =>
         text
-          .setPlaceholder("moc")
+          .setPlaceholder("MOC")
           .setValue(this.plugin.settings.indexTagValue)
           .onChange(async (value) => {
             this.plugin.settings.indexTagValue = value;
@@ -661,10 +650,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Set the tag's label in frontmatter")
-      .setDesc(
-        "Please specify the label of the tags in frontmatter (the text before the colon ):"
-      )
+      .setName(i18next.t("set_the_tag_s_label_in_frontmatter"))
+      .setDesc(i18next.t("set_the_tag_s_label_in_frontmatter_desc"))
       .addText((text) =>
         text
           .setPlaceholder("tags")
@@ -675,10 +662,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Set the tag's separator in Frontmatter")
-      .setDesc(
-        "Please specify the separator characters that distinguish the tags in Frontmatter:"
-      )
+      .setName(i18next.t("set_the_tag_s_separator_in_frontmatter"))
+      .setDesc(i18next.t("set_the_tag_s_separator_in_frontmatter_desc"))
       .addText((text) =>
         text
           .setPlaceholder(", ")
@@ -689,10 +674,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Add square brackets around each tags")
-      .setDesc(
-        "If you enable this, the plugin will put square brackets around the tags set."
-      )
+      .setName(i18next.t("add_square_brackets_around_each_tags"))
+      .setDesc(i18next.t("add_square_brackets_around_each_tags_desc"))
       .addToggle((t) => {
         t.setValue(this.plugin.settings.addSquareBrackets);
         t.onChange(async (v) => {
@@ -700,14 +683,12 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           await this.plugin.saveSettings();
         });
       });
-    containerEl.createEl("h4", { text: "Emojis" });
+    containerEl.createEl("h4", { text: i18next.t("emojis") });
 
     // Enabling Meta Tags
     new Setting(containerEl)
-      .setName("Enable Emojis")
-      .setDesc(
-        "You can set an emoji at the beginning of each index item depending on its type (file or folder). If multiple emojis matches, the first one will be stored."
-      )
+      .setName(i18next.t("enable_emojis"))
+      .setDesc(i18next.t("enable_emojis_desc"))
       .addToggle((t) => {
         t.setValue(this.plugin.settings.enableEmojis);
         t.onChange(async (v) => {
