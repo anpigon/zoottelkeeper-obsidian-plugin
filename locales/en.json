@@ -1,0 +1,10 @@
+{
+  "folder": "Folder",
+  "folders_included": "Folders included",
+  "folders_included_desc": "Specify the folders to be handled by Zoottelkeeper. They must be absolute paths starting from the root vault, one per line, example: Notes/ <enter> Articles/, which will include Notes and Articles folder in the root folder. Empty list means all of the vault will be handled except the excluded folders. '*' can be added to the end, to include the folder's subdirectories recursively, e.g. Notes/* <enter> Articles/",
+  "folders_excluded": "Folders excluded",
+  "folders_excluded_desc": "Specify the folders NOT to be handled by Zoottelkeeper. They must be absolute paths starting from the root vault, one per line, an empty line excluding the root folder itself. Example:  \"Notes/ <enter>  Articles/ \", it will exclude Notes and Articles folder in the root folder. * can be added to the end, to exclude the folder's subdirectories recursively.",
+  "trigger_indexing": "Trigger indexing",
+  "trigger_indexing_desc": "By pushing this button you can trigger the indexing on folders match your include/exclude criterias currently set.",
+  "generate_index_now": "Generate index now"
+}
