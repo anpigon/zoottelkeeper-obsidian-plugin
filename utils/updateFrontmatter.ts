@@ -12,7 +12,7 @@ export const updateFrontmatter = (settings: ZoottelkeeperPluginSettings, current
     if (currentFrontmatterWithoutSep === '')
         return ''
     else {
-        let tagLine = currentFrontmatterWithoutSep.split('\n').find(elem => elem.split(':')[0]=== settings.indexTagLabel);
+        let tagLine = currentFrontmatterWithoutSep.split('\n').find(elem => elem.split(':')[0]=== settings.indexTagLabel) || '';
         if (!tagLine && settings.indexTagValue && settings.indexTagBoolean){
             tagLine = 'tags:';
             currentFrontmatterWithoutSep = `${currentFrontmatterWithoutSep}${tagLine}\n`;
