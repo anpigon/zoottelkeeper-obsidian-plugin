@@ -3,6 +3,9 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/akosbalasko/zoottelkeeper-obsidian-plugin?style=for-the-badge&sort=semver)](https://github.com/akosbalasko/zoottelkeeper-obsidian-plugin/releases/latest)
 ![GitHub All Releases](https://img.shields.io/github/downloads/akosbalasko/zoottelkeeper-obsidian-plugin/total?style=for-the-badge)
 
+[[README_ko|한국어]]
+
+
 ## Changes in v.0.18.0
 
 - Include/Exclude folders improved: absolute paths are required, independently from its first character (it can be '/', or simply just start with the name of the folder within the root path to be included/excluded ).
