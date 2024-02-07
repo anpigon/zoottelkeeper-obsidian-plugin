@@ -1,29 +1,45 @@
+import i18next from "i18next";
+import { SortOrder } from "models";
+import * as emoji from "node-emoji";
 import {
   App,
   Modal,
-  debounce,
   Plugin,
   PluginSettingTab,
   Setting,
-  TFile,
   TAbstractFile,
+  TFile,
+  debounce,
+  moment,
 } from "obsidian";
-import { IndexItemStyle } from "./interfaces/IndexItemStyle";
+import { DEFAULT_SETTINGS } from "./defaultSettings";
 import {
   GeneralContentOptions,
   ZoottelkeeperPluginSettings,
 } from "./interfaces";
+import { IndexItemStyle } from "./interfaces/IndexItemStyle";
+import * as en from "./locales/en.json";
+import * as ko from "./locales/ko.json";
 import {
+  hasFrontmatter,
   isInAllowedFolder,
   isInDisAllowedFolder,
+  removeFrontmatter,
   updateFrontmatter,
   updateIndexContent,
-  removeFrontmatter,
-  hasFrontmatter,
 } from "./utils";
-import { DEFAULT_SETTINGS } from "./defaultSettings";
-import * as emoji from "node-emoji";
-import { SortOrder } from "models";
+
+//detect language
+console.log(moment.locale());
+
+i18next.init({
+  lng: moment.locale() || "en",
+  fallbackLng: "en",
+  resources: {
+    en: { translation: en },
+    ko: { translation: ko },
+  },
+});
 
 export default class ZoottelkeeperPlugin extends Plugin {
   settings: ZoottelkeeperPluginSettings;
@@ -322,7 +338,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   generateFormattedIndexItem = (path: string, isFile: boolean): string => {
     const realFileName = `${path.split("|")[0]}.md`;
     const fileAbstrPath = this.app.vault.getAbstractFileByPath(realFileName);
-	if(!fileAbstrPath) return "";
+    if (!fileAbstrPath) return "";
     const embedSubIndexCharacter =
       this.settings.embedSubIndex && this.isIndexFile(fileAbstrPath) ? "!" : "";
 
@@ -460,14 +476,11 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
     let { containerEl } = this;
 
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Zoottelkeeper Settings" });
-    containerEl.createEl("h3", { text: "Folder Settings" });
+    containerEl.createEl("h3", { text: i18next.t("folder") });
 
     new Setting(containerEl)
-      .setName("Folders included")
-      .setDesc(
-        "Specify the folders to be handled by Zoottelkeeper. They must be absolute paths starting from the root vault, one per line, example: Notes/ <enter> Articles/, which will include Notes and Articles folder in the root folder. Empty list means all of the vault will be handled except the excluded folders. '*' can be added to the end, to include the folder's subdirectories recursively, e.g. Notes/* <enter> Articles/"
-      )
+      .setName(i18next.t("folders_included"))
+      .setDesc(i18next.t("folders_included_desc"))
       .addTextArea((text) =>
         text
           .setPlaceholder("")
@@ -485,10 +498,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Folders excluded")
-      .setDesc(
-        'Specify the folders NOT to be handled by Zoottelkeeper. They must be absolute paths starting from the root vault, one per line, an empty line excluding the root folder itself. Example:  "Notes/ <enter>  Articles/ ", it will exclude Notes and Articles folder in the root folder. * can be added to the end, to exclude the folder\'s subdirectories recursively.'
-      )
+      .setName(i18next.t("folders_excluded"))
+      .setDesc(i18next.t("folders_excluded_desc"))
       .addTextArea((text) =>
         text
           .setPlaceholder("")
@@ -506,12 +517,10 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           })
       );
     new Setting(containerEl)
-      .setName("Trigger indexing")
-      .setDesc(
-        "By pushing this button you can trigger the indexing on folders match your include/exclude criterias currently set."
-      )
+      .setName(i18next.t("trigger_indexing"))
+      .setDesc(i18next.t("trigger_indexing_desc"))
       .addButton((btn) => {
-        btn.setButtonText("Generate index now");
+        btn.setButtonText(i18next.t("generate_index_now"));
         btn.onClick(async () => {
           this.plugin.lastVault = new Set();
           await this.plugin.keepTheZooClean(true);
