@@ -697,13 +697,13 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
         });
       });
 
-    let emojiFolderDesc = "Set an emoji for folders:";
+    let emojiFolderDesc = i18next.t("set_an_emoji_for_folders");
     if (this.plugin.settings.folderEmoji) {
       const setFolderEmoji = emoji.search(this.plugin.settings.folderEmoji);
-      emojiFolderDesc = `Matching Options:${setFolderEmoji[0].emoji} (${setFolderEmoji[0].key})`;
-    }
+      emojiFolderDesc = `${i18next.t("matching_options")} ${setFolderEmoji[0]?.emoji} (${setFolderEmoji[0]?.key})`;
+    } 
     const emojiForFoldersSetting = new Setting(containerEl)
-      .setName("Emojis")
+      .setName(i18next.t("emoji_for_folders"))
       .setDesc(emojiFolderDesc)
       .addText((text) =>
         text
@@ -713,27 +713,27 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             if (value !== "") {
               const emojiOptions = emoji.search(value);
               emojiForFoldersSetting.setDesc(
-                `Matching Options:${emojiOptions.map(
+                `${i18next.t("matching_options")} ${emojiOptions.map(
                   (emojOp) => emojOp.emoji + "(" + emojOp.key + ")"
                 )}`
               );
               if (emojiOptions.length > 0) {
-                this.plugin.settings.folderEmoji = `:${emojiOptions[0].key}:`;
+                this.plugin.settings.folderEmoji = `:${emojiOptions[0]?.key}:`;
                 await this.plugin.saveSettings();
               }
             } else {
-              emojiForFoldersSetting.setDesc("Set an emoji for folders:");
+              emojiForFoldersSetting.setDesc(i18next.t("set_an_emoji_for_folders"));
             }
           })
       );
-    let emojiFileDesc = "Set an emoji for files:";
+    let emojiFileDesc = i18next.t("set_an_emoji_for_files");
     if (this.plugin.settings.fileEmoji) {
       const setFileEmoji = emoji.search(this.plugin.settings.fileEmoji);
-      emojiFileDesc = `Matching Options:${setFileEmoji[0].emoji} (${setFileEmoji[0].key})`;
+      emojiFileDesc = `${i18next.t("matching_options")}${setFileEmoji[0].emoji} (${setFileEmoji[0].key})`;
     }
 
     const emojiForFilesSetting = new Setting(containerEl)
-      .setName("Emojis")
+      .setName(i18next.t("emoji_for_files"))
       .setDesc(emojiFileDesc)
       .addText((text) =>
         text
@@ -743,7 +743,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             if (value !== "") {
               const emojiOptions = emoji.search(value);
               emojiForFilesSetting.setDesc(
-                `Matching Options:${emojiOptions.map(
+                `${i18next.t("set_an_emoji_for_folders")}${emojiOptions.map(
                   (emojOp) => emojOp.emoji + "(" + emojOp.key + ")"
                 )}`
               );
@@ -752,7 +752,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
                 await this.plugin.saveSettings();
               }
             } else {
-              emojiForFilesSetting.setDesc("Set an emoji for files:");
+              emojiForFilesSetting.setDesc(i18next.t("set_an_emoji_for_files"));
             }
           })
       );

@@ -40,5 +40,10 @@
   "add_square_brackets_around_each_tags_desc": "If you enable this, the plugin will put square brackets around the tags set.",
   "emojis": "Emojis",
   "enable_emojis": "Enable Emojis",
-  "enable_emojis_desc": "You can set an emoji at the beginning of each index item depending on its type (file or folder). If multiple emojis matches, the first one will be stored."
+  "enable_emojis_desc": "You can set an emoji at the beginning of each index item depending on its type (file or folder). If multiple emojis matches, the first one will be stored.",
+  "emoji_for_folders": "Emoji for folders",
+  "set_an_emoji_for_folders": "Set an emoji for folders: ",
+  "matching_options": "Matching Options: ",
+  "emoji_for_files" : "Emoji for files",
+  "set_an_emoji_for_files" : "Set an emoji for files: ",
 }

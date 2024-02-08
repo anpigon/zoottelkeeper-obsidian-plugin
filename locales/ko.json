@@ -40,5 +40,10 @@
   "add_square_brackets_around_each_tags_desc": "이 기능을 활성화하면, 플러그인은 설정된 태그 주변에 대괄호를 추가할 것입니다.",
   "emojis": "이모지",
   "enable_emojis": "이모지 활성화",
-  "enable_emojis_desc": "각 인덱스 항목의 유형(파일 또는 폴더)에 따라 맨 앞에 이모지를 설정할 수 있습니다. 여러 이모지가 일치하는 경우, 첫 번째 것이 저장됩니다."
+  "enable_emojis_desc": "각 인덱스 항목의 유형(파일 또는 폴더)에 따라 맨 앞에 이모지를 설정할 수 있습니다. 여러 이모지가 일치하는 경우, 첫 번째 것이 저장됩니다.",
+  "emoji_for_folders": "폴더용 이모지",
+  "set_an_emoji_for_folders": "폴더용 이모지 설정: ",
+  "matching_options": "일치 옵션: ",
+  "emoji_for_files": "파일용 이모지",
+  "set_an_emoji_for_files": "파일용 이모지 설정: "
 }
