@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          # cache: 'npm'
+
       - name: Get npm cache directory
         id: npm-cache-dir
         shell: bash
