@@ -1,7 +1,7 @@
 {
 	"id": "zoottelkeeper-obsidian-plugin",
 	"name": "Zoottelkeeper Plugin",
-	"version": "0.18.4",
+	"version": "0.18.5",
 	"minAppVersion": "1.4.11",
 	"description": "This plugin automatically creates, maintains and tags MOCs for all your folders.",
 	"author": "Akos Balasko, Micha Brugger",
