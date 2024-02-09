@@ -3,8 +3,9 @@ import { getFrontmatter } from "./getFrontmatter";
 
 export const updateFrontmatter = (
   settings: ZoottelkeeperPluginSettings,
-  currentContent: string
+  currentContent: string,
 ): string => {
+  console.log("updateFrontmatter", settings.indexTagBoolean);
   if (!settings.indexTagBoolean)
     return getFrontmatter(currentContent, settings.frontMatterSeparator);
 
@@ -43,13 +44,13 @@ export const updateFrontmatter = (
     const updatedTagLine = `tags: ${updatedTaglist}`;
     const regex = new RegExp(
       tagLine.replace(/\[/g, "\\[").replace(/\]/g, "\\]"),
-      "g"
+      "g",
     );
 
     return settings.indexTagBoolean
       ? `${settings.frontMatterSeparator}${currentFrontmatterWithoutSep.replace(
           regex,
-          updatedTagLine
+          updatedTagLine,
         )}${settings.frontMatterSeparator}`
       : `${settings.frontMatterSeparator}${currentFrontmatterWithoutSep}${settings.frontMatterSeparator}`;
   }

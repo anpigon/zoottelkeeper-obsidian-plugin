@@ -1,8 +1,7 @@
-
-import { TAbstractFile, } from 'obsidian';
+import { TAbstractFile } from "obsidian";
 
 export interface GeneralContentOptions {
-	items: Array<TAbstractFile>;
-	initValue: Array<string>;
-	func: Function;
+  items: Array<TAbstractFile>;
+  initValue: Array<string>;
+  func: Function;
 }

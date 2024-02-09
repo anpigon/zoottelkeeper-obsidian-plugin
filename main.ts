@@ -50,7 +50,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
       this.keepTheZooClean(false, file, oldPath);
     },
     3000,
-    true
+    true,
   );
 
   async onload(): Promise<void> {
@@ -59,18 +59,18 @@ export default class ZoottelkeeperPlugin extends Plugin {
       this.loadVault();
       console.debug(
         `Vault in files: ${JSON.stringify(
-          this.app.vault.getMarkdownFiles().map((f) => f.path)
-        )}`
+          this.app.vault.getMarkdownFiles().map((f) => f.path),
+        )}`,
       );
     });
     this.registerEvent(
-      this.app.vault.on("create", this.triggerUpdateIndexFile)
+      this.app.vault.on("create", this.triggerUpdateIndexFile),
     );
     this.registerEvent(
-      this.app.vault.on("delete", this.triggerUpdateIndexFile)
+      this.app.vault.on("delete", this.triggerUpdateIndexFile),
     );
     this.registerEvent(
-      this.app.vault.on("rename", this.triggerUpdateIndexFile)
+      this.app.vault.on("rename", this.triggerUpdateIndexFile),
     );
 
     this.addSettingTab(new ZoottelkeeperPluginSettingTab(this.app, this));
@@ -87,7 +87,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   async keepTheZooClean(
     triggeredManually?: boolean,
     file?: TAbstractFile,
-    oldPath?: string
+    oldPath?: string,
   ) {
     console.info("keeping the zoo clean...");
     if (this.lastVault || triggeredManually) {
@@ -103,8 +103,8 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
         console.debug(
           `Index files to be updated: ${JSON.stringify(
-            Array.from(indexFiles2BUpdated)
-          )}`
+            Array.from(indexFiles2BUpdated),
+          )}`,
         );
 
         await this.renameIndexFile(indexFileAndNewPath);
@@ -118,10 +118,10 @@ export default class ZoottelkeeperPlugin extends Plugin {
   getCreatedAndDeletedFiles(vaultFilePathsSet: Set<string>) {
     // getting the changed files using symmetric diff
     const createdFiles = Array.from(vaultFilePathsSet).filter(
-      (currentFile) => !this.lastVault.has(currentFile)
+      (currentFile) => !this.lastVault.has(currentFile),
     );
     const deletedFiles = Array.from(this.lastVault).filter(
-      (currentVaultFile) => !vaultFilePathsSet.has(currentVaultFile)
+      (currentVaultFile) => !vaultFilePathsSet.has(currentVaultFile),
     );
 
     let changedFiles = Array.from(new Set([...createdFiles, ...deletedFiles]));
@@ -131,7 +131,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
   getIndexFile2BRenamed(
     file?: TAbstractFile,
-    oldPath?: string
+    oldPath?: string,
   ): { file: TFile; newPath: string } | undefined {
     if (!file || !oldPath) return undefined;
 
@@ -164,7 +164,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
       // The old index file is still there => folder has been renamed and the file can be deleted
       if (folderOrIndexFile instanceof TFile) {
         const newPath = this.getIndexFilePath(
-          `${createdFileSplit.slice(0, i + 1).join("/")}/`
+          `${createdFileSplit.slice(0, i + 1).join("/")}/`,
         );
         return { file: folderOrIndexFile, newPath };
       }
@@ -190,7 +190,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
       // getting the parents' index notes of each changed file in order to update their links as well (hierarhical backlinks)
       const parentIndexFilePath = this.getIndexFilePath(
-        this.getParentFolder(changedFile)
+        this.getParentFolder(changedFile),
       );
       if (parentIndexFilePath) indexFiles2BUpdated.add(parentIndexFilePath);
     }
@@ -199,7 +199,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   }
 
   async renameIndexFile(
-    indexFileAndNewPath: { file: TFile; newPath: string } | undefined
+    indexFileAndNewPath: { file: TFile; newPath: string } | undefined,
   ) {
     if (!indexFileAndNewPath) return;
 
@@ -238,7 +238,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
   generateIndexContents = async (indexFile: string): Promise<void> => {
     const templateFile = this.app.vault.getAbstractFileByPath(
-      this.settings.templateFile
+      this.settings.templateFile,
     );
     let currentTemplateContent = "";
 
@@ -255,7 +255,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   };
 
   generateGeneralIndexContent = (
-    options: GeneralContentOptions
+    options: GeneralContentOptions,
   ): Array<string> => {
     return options.items.reduce((acc, curr) => {
       acc.push(options.func(curr.path, this.isFile(curr)));
@@ -275,7 +275,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
         else acc["subFolders"].push(curr);
         return acc;
       },
-      { subFolders: [] as TAbstractFile[], files: [] as TAbstractFile[] }
+      { subFolders: [] as TAbstractFile[], files: [] as TAbstractFile[] },
     );
 
     indexContent = this.generateGeneralIndexContent({
@@ -294,7 +294,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
         let currentContent = await this.app.vault.cachedRead(indexTFile);
         if (currentContent === "") {
           const templateFile = this.app.vault.getAbstractFileByPath(
-            this.settings.templateFile
+            this.settings.templateFile,
           );
 
           if (templateFile instanceof TFile) {
@@ -303,23 +303,23 @@ export default class ZoottelkeeperPlugin extends Plugin {
         }
         const updatedFrontmatter = hasFrontmatter(
           currentContent,
-          this.settings.frontMatterSeparator
+          this.settings.frontMatterSeparator,
         )
           ? updateFrontmatter(this.settings, currentContent)
           : "";
 
         currentContent = removeFrontmatter(
           currentContent,
-          this.settings.frontMatterSeparator
+          this.settings.frontMatterSeparator,
         );
         const updatedIndexContent = updateIndexContent(
           this.settings.sortOrder,
           currentContent,
-          indexContent
+          indexContent,
         );
         await this.app.vault.modify(
           indexTFile,
-          `${updatedFrontmatter}${updatedIndexContent}`
+          `${updatedFrontmatter}${updatedIndexContent}`,
         );
       } else {
         throw new Error("Creation index as folder is not supported");
@@ -346,15 +346,15 @@ export default class ZoottelkeeperPlugin extends Plugin {
     switch (this.settings.indexItemStyle) {
       case IndexItemStyle.PureLink:
         return `${this.setEmojiPrefix(
-          isFile
+          isFile,
         )} ${embedSubIndexCharacter}[[${path}]]`;
       case IndexItemStyle.List:
         return `- ${this.setEmojiPrefix(
-          isFile
+          isFile,
         )} ${embedSubIndexCharacter}[[${path}]]`;
       case IndexItemStyle.Checkbox:
         return `- [ ] ${this.setEmojiPrefix(
-          isFile
+          isFile,
         )} ${embedSubIndexCharacter}[[${path}]]`;
     }
   };
@@ -405,7 +405,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   };
 
   removeDisallowedFoldersIndexes = async (
-    indexFiles: Set<string>
+    indexFiles: Set<string>,
   ): Promise<void> => {
     for (const folder of this.settings.foldersExcluded
       .split("\n")
@@ -496,7 +496,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
               })
               .join("\n");
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("folders_excluded"))
@@ -515,7 +515,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
               })
               .join("\n");
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("trigger_indexing"))
@@ -559,12 +559,12 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
       .addDropdown(async (dropdown) => {
         dropdown.addOption(
           IndexItemStyle.PureLink,
-          i18next.t("pure_obsidian_link")
+          i18next.t("pure_obsidian_link"),
         );
         dropdown.addOption(IndexItemStyle.List, i18next.t("listed_link"));
         dropdown.addOption(
           IndexItemStyle.Checkbox,
-          i18next.t("checkboxed_link")
+          i18next.t("checkboxed_link"),
         );
 
         dropdown.setValue(this.plugin.settings.indexItemStyle);
@@ -596,7 +596,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             console.debug("Index prefix: " + value);
             this.plugin.settings.indexPrefix = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("template_file"))
@@ -609,7 +609,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             console.debug("Template file: " + value);
             this.plugin.settings.templateFile = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("frontmatter_separator"))
@@ -621,7 +621,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           .onChange(async (value) => {
             this.plugin.settings.frontMatterSeparator = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     containerEl.createEl("h4", { text: i18next.t("meta_tags") });
 
@@ -648,7 +648,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           .onChange(async (value) => {
             this.plugin.settings.indexTagValue = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("set_the_tag_s_label_in_frontmatter"))
@@ -660,7 +660,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           .onChange(async (value) => {
             this.plugin.settings.indexTagLabel = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("set_the_tag_s_separator_in_frontmatter"))
@@ -672,7 +672,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
           .onChange(async (value) => {
             this.plugin.settings.indexTagSeparator = value;
             await this.plugin.saveSettings();
-          })
+          }),
       );
     new Setting(containerEl)
       .setName(i18next.t("add_square_brackets_around_each_tags"))
@@ -717,8 +717,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
               const emojiOptions = emoji.search(value);
               emojiForFoldersSetting.setDesc(
                 `${i18next.t("matching_options")} ${emojiOptions.map(
-                  (emojOp) => emojOp.emoji + "(" + emojOp.key + ")"
-                )}`
+                  (emojOp) => emojOp.emoji + "(" + emojOp.key + ")",
+                )}`,
               );
               if (emojiOptions.length > 0) {
                 this.plugin.settings.folderEmoji = `:${emojiOptions[0]?.key}:`;
@@ -726,10 +726,10 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
               }
             } else {
               emojiForFoldersSetting.setDesc(
-                i18next.t("set_an_emoji_for_folders")
+                i18next.t("set_an_emoji_for_folders"),
               );
             }
-          })
+          }),
       );
     let emojiFileDesc = i18next.t("set_an_emoji_for_files");
     if (this.plugin.settings.fileEmoji) {
@@ -751,8 +751,8 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
               const emojiOptions = emoji.search(value);
               emojiForFilesSetting.setDesc(
                 `${i18next.t("set_an_emoji_for_folders")}${emojiOptions.map(
-                  (emojOp) => emojOp.emoji + "(" + emojOp.key + ")"
-                )}`
+                  (emojOp) => emojOp.emoji + "(" + emojOp.key + ")",
+                )}`,
               );
               if (emojiOptions.length > 0) {
                 this.plugin.settings.fileEmoji = `:${emojiOptions[0].key}:`;
@@ -761,7 +761,7 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
             } else {
               emojiForFilesSetting.setDesc(i18next.t("set_an_emoji_for_files"));
             }
-          })
+          }),
       );
   }
 }
