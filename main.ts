@@ -54,6 +54,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
   );
 
   async onload(): Promise<void> {
+    console.info("loading zoottelkeeper plugin");
     await this.loadSettings();
     this.app.workspace.onLayoutReady(async () => {
       this.loadVault();
@@ -109,7 +110,9 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
         await this.renameIndexFile(indexFileAndNewPath);
         await this.updateIndexFiles(indexFiles2BUpdated);
-      } catch (e) {}
+      } catch (e) {
+        console.error("Error during indexing", e);
+      }
     }
     this.lastVault = this.getVaultSet();
     console.info("zoo is clean now");
@@ -291,6 +294,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
     try {
       if (indexTFile instanceof TFile) {
+        console.log("indexTFile", indexTFile);
         let currentContent = await this.app.vault.cachedRead(indexTFile);
         if (currentContent === "") {
           const templateFile = this.app.vault.getAbstractFileByPath(
