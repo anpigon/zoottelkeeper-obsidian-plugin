@@ -1,4 +1,9 @@
 {
   "i18n-ally.localesPaths": ["locales"],
-  "cSpell.words": ["Zoottelkeeper"]
+  "cSpell.words": ["Zoottelkeeper"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
 }
