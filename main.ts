@@ -294,7 +294,6 @@ export default class ZoottelkeeperPlugin extends Plugin {
 
     try {
       if (indexTFile instanceof TFile) {
-        console.log("indexTFile", indexTFile);
         let currentContent = await this.app.vault.cachedRead(indexTFile);
         if (currentContent === "") {
           const templateFile = this.app.vault.getAbstractFileByPath(
