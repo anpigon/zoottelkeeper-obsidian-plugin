@@ -5,7 +5,6 @@ export const updateFrontmatter = (
   settings: ZoottelkeeperPluginSettings,
   currentContent: string,
 ): string => {
-  console.log("updateFrontmatter", settings.indexTagBoolean);
   if (!settings.indexTagBoolean)
     return getFrontmatter(currentContent, settings.frontMatterSeparator);
 
@@ -51,7 +50,7 @@ export const updateFrontmatter = (
       ? `${settings.frontMatterSeparator}${currentFrontmatterWithoutSep.replace(
           regex,
           updatedTagLine,
-        )}${settings.frontMatterSeparator}`
-      : `${settings.frontMatterSeparator}${currentFrontmatterWithoutSep}${settings.frontMatterSeparator}`;
+        )}${settings.frontMatterSeparator}\n`
+      : `${settings.frontMatterSeparator}${currentFrontmatterWithoutSep}${settings.frontMatterSeparator}\n`;
   }
 };
