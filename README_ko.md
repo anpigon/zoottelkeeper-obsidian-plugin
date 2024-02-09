@@ -77,9 +77,7 @@ ZoottelKeeper는 다음을 관찰합니다:
 ### 2.2 이것이 실제로 멋진 점은 무엇인가요?
 지금까지 좋습니다, 우리는 그것을 전에 보았습니다. 실제로 좋은 것은, 이제 *폴더 B*를 *폴더 A*로 이동한다면 **(6)**, 그러면 인덱스 파일이 자동으로 업데이트 됩니다 **(7)**, 원하는 그래프 뷰를 결과로 합니다 **(8)**.
 
-![이미지](https://user-images.githubusercontent.com/46029522/126866100-be3717da-cae6-4550-9e52-7719d00e49f7.png)  -->  ![이미지](https://user-images.githubusercontent.com/46029522/126866120-b2b8d0b1-2334-4be9-88d8-84bb825705a6.png)  -->  ![이미
-
-지](https://user-images.githubusercontent.com/46029522/126866136-ba068748-5698-4ca7-aeff-562ab0c435a0.png)
+![이미지](https://user-images.githubusercontent.com/46029522/126866100-be3717da-cae6-4550-9e52-7719d00e49f7.png)  -->  ![이미지](https://user-images.githubusercontent.com/46029522/126866120-b2b8d0b1-2334-4be9-88d8-84bb825705a6.png)  -->  ![이미지](https://user-images.githubusercontent.com/46029522/126866136-ba068748-5698-4ca7-aeff-562ab0c435a0.png)
 
 ### 2.3 면책 조항 및 다른 사용된 플러그인
 당신은 뷰 **(1)** 및 **(6)** 에서 폴더 안의 인덱스 파일을 볼 수 없다는 것을 알아챘을 것입니다, 그 이유는 인덱스 파일에 접두사를 추가하지 않았기 때문입니다 (그래서 자동으로 폴더처럼 명명됨) 그리고 나는 또한 **Folder Note** 플러그인을 사용합니다, 그것은 폴더처럼 명명된 파일을 폴더에서 숨기고 폴더를 클릭할 때 그것들을 표시하는 것을 좋아합니다 (여기 MOC 목적에도 매우 좋습니다).
