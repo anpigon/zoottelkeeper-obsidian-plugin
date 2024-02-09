@@ -89,7 +89,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
     file?: TAbstractFile,
     oldPath?: string
   ) {
-    console.debug("keeping the zoo clean...");
+    console.info("keeping the zoo clean...");
     if (this.lastVault || triggeredManually) {
       const vaultFilePathsSet = this.getVaultSet();
       try {
@@ -112,6 +112,7 @@ export default class ZoottelkeeperPlugin extends Plugin {
       } catch (e) {}
     }
     this.lastVault = this.getVaultSet();
+    console.info("zoo is clean now");
   }
 
   getCreatedAndDeletedFiles(vaultFilePathsSet: Set<string>) {
@@ -700,8 +701,10 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
     let emojiFolderDesc = i18next.t("set_an_emoji_for_folders");
     if (this.plugin.settings.folderEmoji) {
       const setFolderEmoji = emoji.search(this.plugin.settings.folderEmoji);
-      emojiFolderDesc = `${i18next.t("matching_options")} ${setFolderEmoji[0]?.emoji} (${setFolderEmoji[0]?.key})`;
-    } 
+      emojiFolderDesc = `${i18next.t("matching_options")} ${
+        setFolderEmoji[0]?.emoji
+      } (${setFolderEmoji[0]?.key})`;
+    }
     const emojiForFoldersSetting = new Setting(containerEl)
       .setName(i18next.t("emoji_for_folders"))
       .setDesc(emojiFolderDesc)
@@ -722,14 +725,18 @@ class ZoottelkeeperPluginSettingTab extends PluginSettingTab {
                 await this.plugin.saveSettings();
               }
             } else {
-              emojiForFoldersSetting.setDesc(i18next.t("set_an_emoji_for_folders"));
+              emojiForFoldersSetting.setDesc(
+                i18next.t("set_an_emoji_for_folders")
+              );
             }
           })
       );
     let emojiFileDesc = i18next.t("set_an_emoji_for_files");
     if (this.plugin.settings.fileEmoji) {
       const setFileEmoji = emoji.search(this.plugin.settings.fileEmoji);
-      emojiFileDesc = `${i18next.t("matching_options")}${setFileEmoji[0].emoji} (${setFileEmoji[0].key})`;
+      emojiFileDesc = `${i18next.t("matching_options")}${
+        setFileEmoji[0].emoji
+      } (${setFileEmoji[0].key})`;
     }
 
     const emojiForFilesSetting = new Setting(containerEl)
